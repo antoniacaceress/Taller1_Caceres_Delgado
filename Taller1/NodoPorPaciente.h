@@ -1,20 +1,33 @@
 #include <string>
 #include "Paciente.h"
 using namespace std;
+template <typename T>
 
 class NodoPorPaciente {
     private: 
-        Paciente* pacienteActual;
-        NodoPorPaciente* next;
+        T pacienteActual;
+        NodoPorPaciente* next;  
     public:
-        NodoPorPaciente(Paciente* siguientePaciente);
+        NodoPorPaciente(T siguientePaciente) {
+            this->pacienteActual = siguientePaciente;
+            this->next = nullptr;
+        }
 
-        Paciente* getPaciente();
-        NodoPorPaciente* getNext();
+        T getPaciente() {
+            return this-> pacienteActual;
+        }   
 
-        void setPaciente(Paciente* pacienteActual);
-        void setNext(NodoPorPaciente* next);
+        NodoPorPaciente<T>* getNext(){
+            return this->next;
+        }
 
-        ~NodoPorPaciente();
+        void setPaciente(T paciente){
+            this-> pacienteActual = paciente; 
+        }
+        void setNext(NodoPorPaciente<T>* nuevoNext) {
+            this-> next = nuevoNext;
+        }
+
+        ~NodoPorPaciente() {}
 };
 

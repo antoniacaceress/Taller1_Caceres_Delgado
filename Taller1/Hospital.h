@@ -18,4 +18,5 @@ class Hospital {
         ~Hospital();
 
         Servicio* buscarServicio(std::string nombre);
+        bool existeId(std::string id);
 };

@@ -34,3 +34,26 @@ Servicio* Hospital::buscarServicio(std::string nombre) {
     }
     return nullptr;
 }
+
+bool Hospital::existeId(std::string id) {
+    int totalServicios = this->servicios.size();
+    for (int i = 0; i < totalServicios; i++) {
+        if (this->servicios.get(i)->buscarPaciente(id) != nullptr) {
+            return true;
+        }
+    }
+
+    // La cola no se puede recorrer, asi que se saca cada paciente y se vuelve a
+    // meter al final. Al terminar la vuelta completa queda en el mismo orden.
+    bool encontrado = false;
+    int totalPendientes = this->pendientes.size();
+    for (int i = 0; i < totalPendientes; i++) {
+        Paciente* p = this->pendientes.front();
+        this->pendientes.pop();
+        if (p->getId() == id) {
+            encontrado = true;
+        }
+        this->pendientes.push(p);
+    }
+    return encontrado;
+}

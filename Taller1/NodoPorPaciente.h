@@ -8,8 +8,8 @@ class NodoPorPaciente {
         T pacienteActual;
         NodoPorPaciente* next;  
     public:
-        NodoPorPaciente(T siguientePaciente) {
-            this->pacienteActual = siguientePaciente;
+        NodoPorPaciente(T paciente) {
+            this->pacienteActual = paciente;
             this->next = nullptr;
         }
 

@@ -14,4 +14,7 @@ class Servicio {
 
         std::string getNombreServicio();
         void agregarPaciente(Paciente* paciente);
+        Paciente* buscarPaciente(std::string id);
+        int cantidadPacientes();
+        void mostrarPacientes();
 };

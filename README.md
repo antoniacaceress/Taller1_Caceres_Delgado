@@ -21,7 +21,7 @@ Benjamin Delgado, RUT 22.223.703-3, usuario de GitHub zomvr2, carrera ICCI.
 Hace falta un compilador con C++14. Desde la carpeta raíz del repositorio:
 
 ```
-g++ -std=c++14 -Wall Taller1/main.cpp Taller1/Atencion.cpp Taller1/Paciente.cpp Taller1/Persona.cpp Taller1/Servicio.cpp -o hospital
+g++ -std=c++14 -Wall Taller1/main.cpp Taller1/Atencion.cpp Taller1/Hospital.cpp Taller1/Paciente.cpp Taller1/Persona.cpp Taller1/Servicio.cpp -o hospital
 ```
 
 O con CMake:

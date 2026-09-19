@@ -8,6 +8,8 @@ include_directories(Taller1)
 add_executable(Taller1_Caceres_Delgado
         Taller1/Atencion.cpp
         Taller1/Atencion.h
+        Taller1/Hospital.cpp
+        Taller1/Hospital.h
         Taller1/ListaPrincipal.h
         Taller1/main.cpp
         Taller1/NodoPorPaciente.h

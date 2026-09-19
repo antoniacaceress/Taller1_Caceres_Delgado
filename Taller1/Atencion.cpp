@@ -22,3 +22,9 @@ string Atencion::getDepartamento() {
     return this->departamento;
 }
 
+void Atencion::mostrar() {
+    cout << "Nombre: " << this->nombrePaciente
+         << " | Edad: " << this->edad
+         << " | Departamento: " << this->departamento << endl;
+}
+

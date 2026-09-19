@@ -15,4 +15,5 @@ class Atencion {
         std::string getNombrePaciente();
         int getEdadPaciente();
         std::string getDepartamento();
+        void mostrar();
 };

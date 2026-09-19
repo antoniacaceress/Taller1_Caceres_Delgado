@@ -21,6 +21,16 @@ class ListaPrincipal {
             return this->inicio == nullptr;
         }
 
+        int size() {
+            int total = 0;
+            NodoPorPaciente<T>* cursor = this->inicio;
+            while (cursor != nullptr) {
+                total++;
+                cursor = cursor->getNext();
+            }
+            return total;
+        }
+
         void insert(T paciente, int indice) {
             if (indice < 0 ) throw 0;
             if (indice == 0) {

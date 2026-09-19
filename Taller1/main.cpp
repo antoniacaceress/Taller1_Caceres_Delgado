@@ -4,7 +4,7 @@ using namespace std;
 
 
 void menuPrincipal() {
-    int opcion;
+    int opcion = 0;
     while (opcion != 4) {
         cout<< "=== HOSPITAL MARMAJA ===" <<endl;
         cout<< "1. Atender pacientes" << endl;

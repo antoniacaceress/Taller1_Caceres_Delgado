@@ -1,16 +1,16 @@
-#pragma once
 #include "Atencion.h"
 #include <iostream>
+using namespace std;
 
-Atencion::Atencion(std::string nombre, int edadPaciente, std::string departamento) {
-    this->nombrePaciente = nombrePaciente;
-    this->edad = edadPaciente;
+Atencion::Atencion(string nombre, int edad, string departamento) {
+    this->nombrePaciente = nombre;
+    this->edad = edad;
     this->departamento = departamento;
 }
 
 Atencion::~Atencion() {}
 
-std::string Atencion::getNombrePaciente() {
+string Atencion::getNombrePaciente() {
     return this->nombrePaciente;
 }
 
@@ -18,7 +18,7 @@ int Atencion::getEdadPaciente() {
     return this->edad;
 }
 
-std::string Atencion::getDepartamento() {
+string Atencion::getDepartamento() {
     return this->departamento;
 }
 

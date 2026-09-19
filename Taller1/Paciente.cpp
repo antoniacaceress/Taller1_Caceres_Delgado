@@ -2,17 +2,17 @@
 #include <string>
 using namespace std;
 
-Paciente::Paciente(std::string id, std::string nombre, int edad, std::string servicio) : Persona(nombre, edad) {
+Paciente::Paciente(string id, string nombre, int edad, string servicio) : Persona(nombre, edad) {
     this->ID = id;
     this->Servicio = servicio;
 }
 
 Paciente::~Paciente() {}
 
-std::string Paciente:: getId() {
+string Paciente:: getId() {
     return this->ID;
 }
 
-std::string Paciente:: getServicio() {
+string Paciente:: getServicio() {
     return this->Servicio;
 }

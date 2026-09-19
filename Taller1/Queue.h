@@ -2,7 +2,6 @@
 #include <string>
 #include <iostream>
 #include "NodoPorPaciente.h"
-using namespace std;
 template <typename T>
 
 class Queue {
@@ -18,15 +17,15 @@ class Queue {
         }
 
         bool isEmpty() {
-            bool verificador = False;
+            bool verificador = false;
             if (this-> inicio == nullptr) {
-                    verificador = True;
+                    verificador = true;
             }
             return verificador;
         }
 
         void push(T paciente) {
-            NodoPorPaciente<T>* nuevoPaciente = new NodoPorPaciente<T>(paciente)
+            NodoPorPaciente<T>* nuevoPaciente = new NodoPorPaciente<T>(paciente);
 
             if (isEmpty()) {
                 this->inicio = nuevoPaciente;
@@ -40,12 +39,13 @@ class Queue {
 
         void pop() {
             if (isEmpty()) {
-                cout << "La fila está vacía";
+                std::cout << "La fila está vacía";
                 return;
             }
 
             NodoPorPaciente<T>* datoInicial = this-> inicio;
-            siguiente = datoInicial->getNext;
+            NodoPorPaciente<T>* siguiente = datoInicial->getNext();
+            this->inicio = siguiente;
 
             if (siguiente==nullptr) {
                 this-> final = nullptr;
@@ -56,6 +56,7 @@ class Queue {
         }
 
         T front() {
+            if (isEmpty()) throw 0;
             return this->inicio->getPaciente();
         }
 
@@ -64,11 +65,13 @@ class Queue {
         }
 
         void clear() {
-            while (!isEmpty) {
+            while (!this->isEmpty()) {
                 this->pop();
             }
         }
 
-        ~Queue() {}
+        ~Queue() {
+            this->clear();
+        }
 
 };

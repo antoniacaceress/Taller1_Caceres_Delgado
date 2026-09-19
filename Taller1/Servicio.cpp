@@ -12,3 +12,11 @@ Servicio::~Servicio() {
         this->listaPacientes.remove(0);
     }
 }
+
+std::string Servicio::getNombreServicio() {
+    return this->nombreServicio;
+}
+
+void Servicio::agregarPaciente(Paciente* paciente) {
+    this->listaPacientes.insertLast(paciente);
+}

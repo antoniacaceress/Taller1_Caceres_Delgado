@@ -1,6 +1,6 @@
+#pragma once
 #include <string>
 #include "Paciente.h"
-using namespace std;
 template <typename T>
 
 class NodoPorPaciente {

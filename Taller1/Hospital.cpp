@@ -241,6 +241,7 @@ void Hospital::mostrarDepartamento(int numero) {
 
 void Hospital::mostrarHistorial() {
     std::cout << "=== HISTORIAL DE ULTIMAS ATENCIONES DEL HOSPITAL ===" << std::endl;
+    std::cout << std::endl;
     if (this->historial.isEmpty()) {
         std::cout << "Todavia no se ha atendido a nadie" << std::endl;
         return;

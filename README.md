@@ -33,13 +33,15 @@ cmake --build build
 
 ## Ejecutar
 
-Se le pasa como argumento el archivo con los pacientes:
+El programa lee los pacientes desde `Prueba.txt`, que debe estar en la carpeta desde la
+que se ejecuta:
 
 ```
-./hospital Prueba.txt
+./hospital
 ```
 
-Si se compiló con CMake el ejecutable queda en `build/`. En Windows termina en `.exe`.
+Si se compiló con CMake el ejecutable queda en `build/` y `Prueba.txt` se copia ahí
+automáticamente. En Windows termina en `.exe`.
 
 ## Archivo de entrada
 

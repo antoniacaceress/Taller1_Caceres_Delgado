@@ -5,6 +5,8 @@ set(CMAKE_CXX_STANDARD 14)
 
 include_directories(Taller1)
 
+configure_file(Prueba.txt Prueba.txt COPYONLY)
+
 add_executable(Taller1_Caceres_Delgado
         Taller1/Atencion.cpp
         Taller1/Atencion.h

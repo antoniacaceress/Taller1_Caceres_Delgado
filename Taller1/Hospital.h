@@ -15,6 +15,7 @@ class Hospital {
 
         bool separarLinea(std::string linea, std::string campos[4]);
         bool esNumero(std::string texto);
+        void mostrarDatos(Paciente* paciente);
 
     public:
         Hospital();
@@ -23,4 +24,12 @@ class Hospital {
         Servicio* buscarServicio(std::string nombre);
         bool existeId(std::string id);
         bool cargarPacientes(std::string ruta);
+
+        int cantidadPendientes();
+        void mostrarPendientes();
+        void atenderPacientes(int cantidad);
+        void mostrarServicios();
+        void mostrarDepartamento(int numero);
+        void mostrarHistorial();
+        void buscarPaciente(std::string id);
 };

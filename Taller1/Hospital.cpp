@@ -162,3 +162,130 @@ bool Hospital::cargarPacientes(std::string ruta) {
     std::cout << "Lineas con error: " << ignoradas << std::endl;
     return true;
 }
+
+void Hospital::mostrarDatos(Paciente* paciente) {
+    std::cout << "ID: " << paciente->getId() << std::endl;
+    std::cout << "Nombre: " << paciente->getNombre() << std::endl;
+    std::cout << "Edad: " << paciente->getEdad() << std::endl;
+    std::cout << "Servicio: " << paciente->getServicio() << std::endl;
+}
+
+int Hospital::cantidadPendientes() {
+    return this->pendientes.size();
+}
+
+void Hospital::mostrarPendientes() {
+    std::cout << "=== PACIENTES EN ESPERA ===" << std::endl;
+    if (this->pendientes.isEmpty()) {
+        std::cout << "No hay pacientes en espera" << std::endl;
+        return;
+    }
+
+    int total = this->pendientes.size();
+    for (int i = 0; i < total; i++) {
+        Paciente* p = this->pendientes.front();
+        this->pendientes.pop();
+        std::cout << (i + 1) << ". " << p->getId() << " - " << p->getNombre() << std::endl;
+        this->pendientes.push(p);
+    }
+}
+
+void Hospital::atenderPacientes(int cantidad) {
+    if (this->pendientes.isEmpty()) {
+        std::cout << "No hay pacientes en espera" << std::endl;
+        return;
+    }
+    if (cantidad <= 0) {
+        std::cout << "La cantidad debe ser mayor a 0" << std::endl;
+        return;
+    }
+    if (cantidad > this->pendientes.size()) {
+        std::cout << "Solo hay " << this->pendientes.size() << " pacientes en espera, se atenderan todos" << std::endl;
+        cantidad = this->pendientes.size();
+    }
+
+    std::cout << "=== ATENDIENDO PACIENTES ===" << std::endl;
+    for (int i = 0; i < cantidad; i++) {
+        Paciente* p = this->pendientes.front();
+        this->pendientes.pop();
+
+        Servicio* servicio = this->buscarServicio(p->getServicio());
+        servicio->agregarPaciente(p);
+        this->historial.push(Atencion(p->getNombre(), p->getEdad(), p->getServicio()));
+
+        this->mostrarDatos(p);
+        std::cout << std::endl;
+        std::cout << "Paciente enviado a " << servicio->getNombreServicio() << "." << std::endl;
+        std::cout << std::endl;
+    }
+}
+
+void Hospital::mostrarServicios() {
+    std::cout << "=== DEPARTAMENTOS/SERVICIOS ===" << std::endl;
+    int total = this->servicios.size();
+    for (int i = 0; i < total; i++) {
+        std::cout << (i + 1) << ". " << this->servicios.get(i)->getNombreServicio() << std::endl;
+    }
+}
+
+void Hospital::mostrarDepartamento(int numero) {
+    if (numero < 1 || numero > this->servicios.size()) {
+        std::cout << "Opcion invalida" << std::endl;
+        return;
+    }
+
+    Servicio* servicio = this->servicios.get(numero - 1);
+    std::cout << "=== ESTADO " << servicio->getNombreServicio() << " ===" << std::endl;
+    servicio->mostrarPacientes();
+}
+
+void Hospital::mostrarHistorial() {
+    std::cout << "=== HISTORIAL DE ULTIMAS ATENCIONES DEL HOSPITAL ===" << std::endl;
+    if (this->historial.isEmpty()) {
+        std::cout << "Todavia no se ha atendido a nadie" << std::endl;
+        return;
+    }
+
+    Stack<Atencion> auxiliar;
+    while (!this->historial.isEmpty()) {
+        Atencion atencion = this->historial.top();
+        atencion.mostrar();
+        auxiliar.push(atencion);
+        this->historial.pop();
+    }
+    while (!auxiliar.isEmpty()) {
+        this->historial.push(auxiliar.top());
+        auxiliar.pop();
+    }
+}
+
+void Hospital::buscarPaciente(std::string id) {
+    int totalServicios = this->servicios.size();
+    for (int i = 0; i < totalServicios; i++) {
+        Servicio* servicio = this->servicios.get(i);
+        Paciente* p = servicio->buscarPaciente(id);
+        if (p != nullptr) {
+            std::cout << "Paciente atendido, esta en " << servicio->getNombreServicio() << std::endl;
+            this->mostrarDatos(p);
+            return;
+        }
+    }
+
+    Paciente* encontrado = nullptr;
+    int totalPendientes = this->pendientes.size();
+    for (int i = 0; i < totalPendientes; i++) {
+        Paciente* p = this->pendientes.front();
+        this->pendientes.pop();
+        if (p->getId() == id) {
+            encontrado = p;
+        }
+        this->pendientes.push(p);
+    }
+
+    if (encontrado != nullptr) {
+        std::cout << "Paciente en espera de atencion" << std::endl;
+        this->mostrarDatos(encontrado);
+    } else {
+        std::cout << "No se encontro ningun paciente con el ID " << id << std::endl;
+    }
+}

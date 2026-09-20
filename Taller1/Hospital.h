@@ -13,10 +13,14 @@ class Hospital {
         Queue<Paciente*> pendientes;
         Stack<Atencion> historial;
 
+        bool separarLinea(std::string linea, std::string campos[4]);
+        bool esNumero(std::string texto);
+
     public:
         Hospital();
         ~Hospital();
 
         Servicio* buscarServicio(std::string nombre);
         bool existeId(std::string id);
+        bool cargarPacientes(std::string ruta);
 };
